@@ -7,6 +7,8 @@
 }
   
   .cardBtn {
+    position: relative;
+    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 0;
@@ -31,9 +33,21 @@
     font-size: 3em;
   }
 
-  .cardBack {
+  .cardBack {    
     font-size: 25rem;
     padding: none;
     margin: none;
     color: black;
+  }
+
+  .startBtnTxt {
+    position: absolute;
+    /* Center horizontally */
+    left: 50%;
+    /* Center vertically */
+    top: 50%;
+    /* Offset the element by half of its width and height to truly center it */
+    transform: translate(-50%, -50%);
+    /* Ensure the text is on top if needed */
+    z-index: 1;
   }

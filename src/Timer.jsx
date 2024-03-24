@@ -1,33 +1,43 @@
 import { useState, useEffect } from "react";
 
 export function Timer({ duration, isTimerComplete, setIsTimerComplete }) {
-    const [timer, setTimer] = useState(0)
-   
-  
+    const [timer, setTimer] = useState(0);
+    const [countdown, setCountdown] = useState(3); // Starting countdown from 3
+
     useEffect(() => {
-        // Only start the timer if it's not marked as complete.
-        if (!isTimerComplete) {
+        setIsTimerComplete(false);
+    }, []);
+
+    useEffect(() => {
+        // Handle the countdown separately
+        if (countdown > 0) {
+            const countdownId = setInterval(() => {
+                setCountdown(current => current - 1);
+            }, 1000);
+            return () => clearInterval(countdownId);
+        }
+    }, [countdown]);
+
+    useEffect(() => {
+        // Once the countdown is done, start the timer
+        if (countdown === 0 && !isTimerComplete) {
             const intervalId = setInterval(() => {
-                setTimer((prevTimer) => {
-                    const newTime = prevTimer + 1;
+                setTimer(currentTimer => {
+                    const newTime = currentTimer + 1;
                     if (newTime * 1000 >= duration) {
-                        // Stop the timer when it reaches the duration
+                        setTimeout(() => setIsTimerComplete(true), 0);
                         clearInterval(intervalId);
-                        setIsTimerComplete(true);
                     }
                     return newTime;
                 });
             }, 1000);
-                // Cleanup function to clear the interval on component unmount or timer completion
-                return () => clearInterval(intervalId);
-            }
-    }, [isTimerComplete, duration]);
+            return () => clearInterval(intervalId);
+        }
+    }, [countdown, isTimerComplete, duration, setIsTimerComplete]);
 
-
-
-  return (
-    <>
-    {<p>{timer}</p>}
-    </>
-  )
+    return (
+        <>
+            {countdown > 0 ? <p>Starting in {countdown}...</p> : <p>{timer}</p>}
+        </>
+    );
 }

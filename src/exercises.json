@@ -77,12 +77,20 @@
         "img": ""
     },
     {
-        "exercise": "Side-planks",
-        "description": "Lie on your side with your legs straight and feet stacked on top of each other. Place your right elbow under your right shoulder with your forearm pointing away from you and your hand balled into a fist. The pinky side of your hand should be in contact with the ground. With your neck neutral, breathe out and brace your core. Lift your hips off the mat so that you’re supporting your weight on your elbow and the side of your right foot. Your body should be in a straight line from your ankles to your head.",
+        "exercise": "Right Side-planks",
+        "description": "Lie on your right side with your legs straight and feet stacked on top of each other. Place your right elbow under your right shoulder with your forearm pointing away from you and your hand balled into a fist. The pinky side of your hand should be in contact with the ground. With your neck neutral, breathe out and brace your core. Lift your hips off the mat so that you’re supporting your weight on your elbow and the side of your right foot. Your body should be in a straight line from your ankles to your head.",
         "type": "body-weight",
         "duration": "time",
         "img": ""
     },
+    {
+        "exercise": "Left Side-planks",
+        "description": "Lie on your left side with your legs straight and feet stacked on top of each other. Place your right elbow under your right shoulder with your forearm pointing away from you and your hand balled into a fist. The pinky side of your hand should be in contact with the ground. With your neck neutral, breathe out and brace your core. Lift your hips off the mat so that you’re supporting your weight on your elbow and the side of your right foot. Your body should be in a straight line from your ankles to your head.",
+        "type": "body-weight",
+        "duration": "time",
+        "img": ""
+    },
+ 
     {
         "exercise": "Alternating-crunches",
         "description": "Lie on your right side with your legs straight and feet stacked on top of each other. Place your right elbow under your right shoulder with your forearm pointing away from you and your hand balled into a fist. The pinky side of your hand should be in contact with the ground. With your neck neutral, breathe out and brace your core. Lift your hips off the mat so that you’re supporting your weight on your elbow and the side of your right foot. Your body should be in a straight line from your ankles to your head.",

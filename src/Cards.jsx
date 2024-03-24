@@ -14,20 +14,20 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
   
     const suits = ['spades', 'diamonds', 'clubs', 'hearts'];
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    const jokers = [{ value: 'Joker', suit: 'red', numberValue: 25 }, { value: 'Joker', suit: 'black', numberValue: 25 }];
+    const jokers = [{ value: 'Joker', suit: 'red', numberValue: 20 }, { value: 'Joker', suit: 'black', numberValue: 20 }];
   
     function newDeck() {
         //create deck
         const cards = suits.flatMap(suit =>
             values.map((value) => {
-                // Determine the number value for each card
+                //number value for each card
                 let numberValue;
                 if (value === 'A') {
                     numberValue = 14;
                 } else if (['J', 'Q', 'K'].includes(value)) {
                     numberValue = ['J', 'Q', 'K'].indexOf(value) + 11; //assigning 11, 12, 13 to J, Q, K
                 } else {
-                    numberValue = parseInt(value); // Directly parsing the number for numerical cards
+                    numberValue = parseInt(value); //parsing the number for numerical cards
                 }
                 return { value, suit, numberValue };
             })
@@ -42,11 +42,10 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
     }
 
     function flipCard(cardIndex) {
-        // Toggle visibility of the clicked card
         if (visibleCardIndex === cardIndex) {
-            setVisibleCardIndex(null); // Hide the card if it's already visible
+            setVisibleCardIndex(null); //hide the card if it's already visible
         } else {
-            setVisibleCardIndex(cardIndex); // Show the clicked card
+            setVisibleCardIndex(cardIndex); //show the clicked card
         }
     }
     
@@ -64,9 +63,12 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
     }
    
       useEffect(() =>  {
-        setIsGameOver(true)
-        setCurrentIndex(0)
-      }, [currentIndex > 53])
+        if (currentIndex >= deck.length) {
+            setIsGameOver(true)
+            setCurrentIndex(0)
+        }
+        console.log(currentIndex, deck.length)
+      }, [currentIndex])
 
       useEffect(() => {
         flipCard(0)
@@ -75,10 +77,11 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
       useEffect(() => {
         function generateExerciseArray() {
             let tempArray = []
-            while (tempArray.length < 53) {
+            while (tempArray.length < 55) {
                 const randomIndex = Math.floor(Math.random() * exercises.length);
                 const randomExercise = exercises[randomIndex].exercise;        
-                tempArray.push(randomExercise)
+                const repType = exercises[randomIndex].duration
+                tempArray.push({randomExercise, repType})
             }
             return tempArray
         }
@@ -91,8 +94,8 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         <div className="deckDiv">
           Current card: {currentIndex + 1} of {deck.length}
           {/* <Timer duration={card.value}  isTimerComplete={isTimerComplete} setIsTimerComplete={setIsTimerComplete}/> */}
-          {isGameOver && <><button onClick={newGame}>Start Game<span className='cardBack'>🂠</span></button></>}
-          {deck.map((card, index) => visibleCardIndex === index && (
+          {isGameOver && <><button onClick={newGame}><span className='startBtnTxt'>Start Game</span><span className='cardBack'>🂠</span></button></>}
+          {!isGameOver && deck.map((card, index) => visibleCardIndex === index && (
             <button 
                 key={index} 
                 onClick={() => playRound(index)} 
@@ -103,7 +106,16 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                     {card.suit === 'clubs' && <span>{card.value}♣️</span>}
                     {card.suit === 'spades' && <span>{card.value}♠️</span>}
                     {card.value === 'Joker' && <span>{card.value}<br></br><span className='jokerImg'>🃏</span></span>}
-                    <Exercise cardIndex={currentIndex} isJoker={card.value === "Joker"} exerciseArray={exerciseArray} setExerciseArray={setExerciseArray} numValue={card.numberValue} isTimed={exerciseArray[currentIndex].duration}  />
+                    <Exercise 
+                        cardIndex={currentIndex} 
+                        isJoker={card.value === "Joker"} 
+                        exerciseArray={exerciseArray} 
+                        setExerciseArray={setExerciseArray} 
+                        numValue={card.numberValue} 
+                        isTimed={exerciseArray?.[currentIndex].repType === "time"} 
+                        isTimerComplete={isTimerComplete} 
+                        setIsTimerComplete={setIsTimerComplete} 
+                    />
             </button>
           ))}
         </div>
