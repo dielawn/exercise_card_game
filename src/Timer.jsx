@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './Timer.css'
 
 export function Timer({ duration, isTimerComplete, setIsTimerComplete }) {
     const [timer, setTimer] = useState(0);
@@ -37,7 +38,7 @@ export function Timer({ duration, isTimerComplete, setIsTimerComplete }) {
 
     return (
         <>
-            {countdown > 0 ? <p>Starting in {countdown}...</p> : <p>{timer}</p>}
+            {countdown > 0 ? <p className="leadTxt">Starting in {countdown}...</p> : <p>{timer}</p>}
         </>
     );
 }

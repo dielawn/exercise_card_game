@@ -1,0 +1,9 @@
+.leadTxt {
+    font-size: 1em;
+}
+
+@media screen and (max-width: 500px) {
+    .leadTxt {
+        font-size: .7em;
+    }
+}
