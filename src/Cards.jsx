@@ -101,11 +101,16 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                 onClick={() => playRound(index)} 
                 className={card.suit === 'hearts' || card.suit === 'diamonds' || card.suit === 'red'
                     ? 'red-suit cardBtn' : 'black-suit cardBtn'}>
-                    {card.suit === 'hearts' && <span>{card.value}♥️</span>}
-                    {card.suit === 'diamonds' && <span>{card.value}♦️</span>}
-                    {card.suit === 'clubs' && <span>{card.value}♣️</span>}
-                    {card.suit === 'spades' && <span>{card.value}♠️</span>}
-                    {card.value === 'Joker' && <span>{card.value}<br></br><span className='jokerImg'>🃏</span></span>}
+                    {card.suit === 'hearts' && <span className='topValue'>{card.value}♥️</span>}
+                    {card.suit === 'diamonds' && <span className='topValue'>{card.value}♦️</span>}
+                    {card.suit === 'clubs' && <span className='topValue'>{card.value}♣️</span>}
+                    {card.suit === 'spades' && <span className='topValue'>{card.value}♠️</span>}
+
+                    {card.suit === 'hearts' && <span className='btmValue'>{card.value}♥️</span>}
+                    {card.suit === 'diamonds' && <span className='btmValue'>{card.value}♦️</span>}
+                    {card.suit === 'clubs' && <span className='btmValue'>{card.value}♣️</span>}
+                    {card.suit === 'spades' && <span className='btmValue'>{card.value}♠️</span>}
+                    {card.value === 'Joker' && <span className='btmValue'>{card.value}<br></br><span className='jokerImg'>🃏</span></span>}
                     <Exercise 
                         cardIndex={currentIndex} 
                         isJoker={card.value === "Joker"} 

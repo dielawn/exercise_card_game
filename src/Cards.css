@@ -16,7 +16,7 @@
     text-align: center;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    font-size: 3em;
+    font-size: 2.5em;
     width: 23vw;
     height: 60vh;
 }
@@ -42,12 +42,24 @@
 
   .startBtnTxt {
     position: absolute;
-    /* Center horizontally */
     left: 50%;
-    /* Center vertically */
     top: 50%;
     /* Offset the element by half of its width and height to truly center it */
     transform: translate(-50%, -50%);
-    /* Ensure the text is on top if needed */
     z-index: 1;
+  }
+
+  .topValue {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    font-size: 1.1em;
+  }
+
+  .btmValue {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    transform: rotate(180deg);
+    font-size: 1.1em;
   }
