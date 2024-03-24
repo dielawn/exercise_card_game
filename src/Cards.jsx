@@ -11,6 +11,8 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
     const [spentDeck, setSpentDeck] = useState([]);
     const [isGameOver, setIsGameOver] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    const startMsg = `Click Cards to advance.`
   
     const suits = ['spades', 'diamonds', 'clubs', 'hearts'];
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -94,7 +96,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         <div className="deckDiv">
           Current card: {currentIndex + 1} of {deck.length}
           {/* <Timer duration={card.value}  isTimerComplete={isTimerComplete} setIsTimerComplete={setIsTimerComplete}/> */}
-          {isGameOver && <><button onClick={newGame}><span className='startBtnTxt'>Start Game</span><span className='cardBack'>🂠</span></button></>}
+          {isGameOver && <><button onClick={newGame}><span className='startBtnTxt'>Start Game <br></br><br></br>{startMsg}</span><span className='cardBack'>🂠</span></button></>}
           {!isGameOver && deck.map((card, index) => visibleCardIndex === index && (
             <button 
                 key={index} 
@@ -110,7 +112,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                     {card.suit === 'diamonds' && <span className='btmValue'>{card.value}♦️</span>}
                     {card.suit === 'clubs' && <span className='btmValue'>{card.value}♣️</span>}
                     {card.suit === 'spades' && <span className='btmValue'>{card.value}♠️</span>}
-                    {card.value === 'Joker' && <span className='btmValue'>{card.value}<br></br><span className='jokerImg'>🃏</span></span>}
+                    {card.value === 'Joker' && <span>{card.value}<br></br><span className='jokerImg'>🃏</span></span>}
                     <Exercise 
                         cardIndex={currentIndex} 
                         isJoker={card.value === "Joker"} 
