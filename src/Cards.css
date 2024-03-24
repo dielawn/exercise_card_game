@@ -1,0 +1,39 @@
+.deckDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between cards */
+    
+}
+  
+  .cardBtn {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 3em;
+    width: 23vw;
+    height: 60vh;
+}
+  
+  .red-suit {
+    color: red;
+  }
+  
+  .black-suit {
+    color: black;
+  }
+  
+  .jokerImg {
+    font-size: 3em;
+  }
+
+  .cardBack {
+    font-size: 25rem;
+    padding: none;
+    margin: none;
+    color: black;
+  }
