@@ -67,8 +67,8 @@
   @media screen and (max-width: 500px) {
     .cardBtn {
        font-size: 3em;
-        min-width: 80vw;
-        min-height: 75vh;
+        width: 80vw;
+        height: 75vh;
     }
 
     .jokerImg {

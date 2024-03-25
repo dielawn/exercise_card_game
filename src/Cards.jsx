@@ -24,10 +24,8 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
             values.map((value) => {
                 //number value for each card
                 let numberValue;
-                if (value === 'A') {
-                    numberValue = 14;
-                } else if (['J', 'Q', 'K'].includes(value)) {
-                    numberValue = ['J', 'Q', 'K'].indexOf(value) + 11; //assigning 11, 12, 13 to J, Q, K
+                if (['J', 'Q', 'K', 'A'].includes(value)) {
+                    numberValue = ['J', 'Q', 'K', 'A'].indexOf(value) + 11; //assigning 11, 12, 13, 14 to J, Q, K, A
                 } else {
                     numberValue = parseInt(value); //parsing the number for numerical cards
                 }
