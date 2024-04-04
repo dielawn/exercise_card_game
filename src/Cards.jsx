@@ -48,6 +48,27 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
             setVisibleCardIndex(cardIndex); //show the clicked card
         }
     }
+
+    function gameStats() {
+     const statsObj = {}
+
+     deck.forEach((card, index) => {
+      const exerciseInfo = exerciseArray[index]
+      const {randomExercise, repType} = exerciseInfo
+
+      //if exercise is not in obj initialize it
+      if (!statsObj[randomExercise]) {
+        statsObj[randomExercise] = {totalQty: 0, isTimed: repType === 'time'};
+      }
+
+      //accumulate qty based on card value
+      const qtyToAdd = card.numberValue
+      statsObj[randomExercise].totalQty += qtyToAdd
+     })
+
+     
+
+    }
     
     function playRound(cardIndex) {
         let newIndex = cardIndex + 1
@@ -65,6 +86,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
       useEffect(() =>  {
         if (currentIndex >= deck.length) {
             setIsGameOver(true)
+            gameStats()
             setCurrentIndex(0)
         }
         console.log(currentIndex, deck.length)
