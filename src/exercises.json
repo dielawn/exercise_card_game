@@ -52,7 +52,7 @@
         "exercise": "Mountain-climbers",
         "description": "Get into a plank position, making sure to distribute your weight evenly between your hands and your toes. Check your form—your hands should be about shoulder-width apart, back flat, abs engaged, and head in alignment. Pull your right knee into your chest as far as you can. Switch legs, pulling one knee out and bringing the other knee in. Keep your hips down and run your knees in and out as far and as fast as you can. Alternate inhaling and exhaling with each leg change.",       
         "type": "body-weight",
-        "duration": "qty",
+        "duration": "time",
         "img": ""
     },
     {
@@ -73,7 +73,7 @@
         "exercise": "Jumping-jacks",
         "description": "Stand straight with your feet together and hands by your sides. Jump up, spread your feet and bring both hands together above your head. Jump again and return to the starting position.",
         "type": "body-weight",
-        "duration": "qty",
+        "duration": "time",
         "img": ""
     },
     {

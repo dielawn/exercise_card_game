@@ -8,7 +8,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
     const [deck, setDeck] = useState([]);
     const [visibleCardIndex, setVisibleCardIndex] = useState(null);
     const [isTimerComplete, setIsTimerComplete] = useState(true)
-    const [spentDeck, setSpentDeck] = useState([]);
+    const [stats, setStats] = useState([]);
     const [isGameOver, setIsGameOver] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -58,15 +58,23 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
 
       //if exercise is not in obj initialize it
       if (!statsObj[randomExercise]) {
-        statsObj[randomExercise] = {totalQty: 0, isTimed: repType === 'time'};
+        statsObj[randomExercise] = { totalQty: 0, isTimed: repType === 'time' };
       }
 
       //accumulate qty based on card value
       const qtyToAdd = card.numberValue
       statsObj[randomExercise].totalQty += qtyToAdd
-     })
+     });
 
-     
+     //convert statsObj to an array
+     const statsArray = Object.keys(statsObj).map(key => ({
+      exercise: key,
+      totalQty: statsObj[key].totalQty,
+      isTimed: statsObj[key].isTimed
+     }));
+
+     console.log(statsArray)
+     setStats(statsArray)
 
     }
     
@@ -114,11 +122,20 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
 
       return (
         <div className="deckDiv">
-          Current card: {currentIndex + 1} of {deck.length}
+          
           {/* <Timer duration={card.value}  isTimerComplete={isTimerComplete} setIsTimerComplete={setIsTimerComplete}/> */}
-          {isGameOver && <><button onClick={newGame}><span className='startBtnTxt'>Start Game <br></br><br></br>{startMsg}</span><span className='cardBack'>🂠</span></button></>}
+          {isGameOver && 
+            <>
+              <div className='statsDiv'>
+                <h3>{stats.length} Exercises completed!</h3>
+              {stats.map((stat, index) => (<p key={index} className='statsList'> {stat.exercise} {stat.isTimed ? `${stat.totalQty * 5} sec` : `${stat.totalQty} reps`}</p>))}
+              </div>
+              <button className='newGameBtn' onClick={newGame}><span className='startBtnTxt'>Start Game <br></br><br></br>{startMsg}</span><span className='cardBack'>🂠</span></button>
+            </>}
           {!isGameOver && deck.map((card, index) => visibleCardIndex === index && (
-            <button 
+              <>            
+              <h3>Current card: {currentIndex + 1} of {deck.length}</h3>  
+              <button 
                 key={index} 
                 onClick={() => playRound(index)} 
                 className={card.suit === 'hearts' || card.suit === 'diamonds' || card.suit === 'red'
@@ -144,6 +161,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                         setIsTimerComplete={setIsTimerComplete} 
                     />
             </button>
+            </>
           ))}
         </div>
     );

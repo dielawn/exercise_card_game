@@ -49,6 +49,11 @@
     z-index: 1;
   }
 
+  .newGameBtn {
+    position: relative;
+  }
+
+
   .topValue {
     position: absolute;
     left: 15px;
