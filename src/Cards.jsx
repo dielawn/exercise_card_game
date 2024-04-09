@@ -1,7 +1,7 @@
-import './Cards.css'
+import './Cards.css';
 import { Exercise } from './Exercise';
 import { useState, useEffect } from "react";
-import exercises from './exercises.json'
+import exercises from './exercises.json';
 import { Timer } from './Timer';
 
 export function CardDeck({exerciseArray, setExerciseArray}) {
@@ -27,7 +27,12 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                 if (['J', 'Q', 'K', 'A'].includes(value)) {
                     numberValue = ['J', 'Q', 'K', 'A'].indexOf(value) + 11; //assigning 11, 12, 13, 14 to J, Q, K, A
                 } else {
-                    numberValue = parseInt(value); //parsing the number for numerical cards
+                    console.log(value, numberValue)
+                    if (value === 0) {
+                      numberValue = 20; //parsing the number for numerical cards
+                    } else {
+                      numberValue = parseInt(value);
+                    }                   
                 }
                 return { value, suit, numberValue };
             })
@@ -66,16 +71,18 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
       statsObj[randomExercise].totalQty += qtyToAdd
      });
 
+     
+    
      //convert statsObj to an array
      const statsArray = Object.keys(statsObj).map(key => ({
       exercise: key,
       totalQty: statsObj[key].totalQty,
       isTimed: statsObj[key].isTimed
      }));
-
-     console.log(statsArray)
+     statsArray.map(item => {
+      console.log(item)
+     })
      setStats(statsArray)
-
     }
     
     function playRound(cardIndex) {
@@ -164,6 +171,5 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
             </>
           ))}
         </div>
-    );
-    
+    );    
 }
