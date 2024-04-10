@@ -27,17 +27,12 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
                 if (['J', 'Q', 'K', 'A'].includes(value)) {
                     numberValue = ['J', 'Q', 'K', 'A'].indexOf(value) + 11; //assigning 11, 12, 13, 14 to J, Q, K, A
                 } else {
-                    console.log(value, numberValue)
-                    if (value === 0) {
-                      numberValue = 20; //parsing the number for numerical cards
-                    } else {
-                      numberValue = parseInt(value);
-                    }                   
+                    numberValue = parseInt(value); //parsing the number for numerical cards
                 }
                 return { value, suit, numberValue };
             })
         ).concat(jokers);
-
+        console.log(cards)
       //shuffle deck
       for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -55,34 +50,31 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
     }
 
     function gameStats() {
-     const statsObj = {}
+      const statsObj = {}
 
-     deck.forEach((card, index) => {
-      const exerciseInfo = exerciseArray[index]
-      const {randomExercise, repType} = exerciseInfo
+      deck.forEach((card, index) => {
+        const exerciseInfo = exerciseArray[index]
+        const {randomExercise, repType} = exerciseInfo
 
-      //if exercise is not in obj initialize it
-      if (!statsObj[randomExercise]) {
-        statsObj[randomExercise] = { totalQty: 0, isTimed: repType === 'time' };
-      }
+        //if exercise is not in obj initialize it
+        if (!statsObj[randomExercise]) {        
+          statsObj[randomExercise] = { totalQty: 0, isTimed: repType === 'time' };
+        }
 
-      //accumulate qty based on card value
-      const qtyToAdd = card.numberValue
-      statsObj[randomExercise].totalQty += qtyToAdd
-     });
+        //accumulate qty based on card value
+        const qtyToAdd = card.numberValue
+        statsObj[randomExercise].totalQty += qtyToAdd
+        console.log(card, randomExercise, qtyToAdd)
+      });
+      
+      //convert statsObj to an array
+      const statsArray = Object.keys(statsObj).map(key => ({
+        exercise: key,
+        totalQty: statsObj[key].totalQty,
+        isTimed: statsObj[key].isTimed
+      }));
 
-     
-    
-     //convert statsObj to an array
-     const statsArray = Object.keys(statsObj).map(key => ({
-      exercise: key,
-      totalQty: statsObj[key].totalQty,
-      isTimed: statsObj[key].isTimed
-     }));
-     statsArray.map(item => {
-      console.log(item)
-     })
-     setStats(statsArray)
+      setStats(statsArray)
     }
     
     function playRound(cardIndex) {
@@ -96,6 +88,10 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         setIsGameOver(false)
         newDeck()
         setIsTimerComplete(false)
+    }
+
+    function handleJokers() {
+
     }
    
       useEffect(() =>  {
@@ -115,9 +111,11 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         function generateExerciseArray() {
             let tempArray = []
             while (tempArray.length < 55) {
+                //select a random index to refrence exercise list
                 const randomIndex = Math.floor(Math.random() * exercises.length);
                 const randomExercise = exercises[randomIndex].exercise;        
                 const repType = exercises[randomIndex].duration
+                
                 tempArray.push({randomExercise, repType})
             }
             return tempArray
@@ -130,7 +128,7 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
       return (
         <div className="deckDiv">
           
-          {/* <Timer duration={card.value}  isTimerComplete={isTimerComplete} setIsTimerComplete={setIsTimerComplete}/> */}
+         
           {isGameOver && 
             <>
               <div className='statsDiv'>
