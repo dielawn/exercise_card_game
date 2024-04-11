@@ -121,12 +121,52 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
             return tempArray
         }
         newDeck()
-        let tempArray = generateExerciseArray()
+    
+         //set the indexes of the jokers to an array
+         const indexes = deck.reduce((acc, card, index) => {
+          if (card.value === 'Joker') {
+           acc.push(index)
+          }
+          return acc
+         }, [])
+    
+         console.log(deck[indexes[0]], deck[indexes[1]])
+         console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
+         //array of exercises
+         let tempArray = generateExerciseArray()
+         //set the exercise of the joker to push ups
+        
+         tempArray[indexes[0]].randomExercise = exercises[0].exercise
+         tempArray[indexes[1]].randomExercise = exercises[0].exercise
+
         setExerciseArray(tempArray)
       }, [])
 
+      // useEffect(() => {
+      //   //set the indexes of the jokers to an array
+      //   const indexes = deck.reduce((acc, card, index) => {
+      //    if (card.value === 'Joker') {
+      //     acc.push(index)
+      //    }
+      //    return acc
+      //   }, [])
+   
+      //   console.log(deck[indexes[0]], deck[indexes[1]])
+      //   console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
+
+      //   let tempArray = [...exerciseArray]
+      //   //set the exercise of the joker to push ups
+      //   tempArray[indexes[0]].randomExercise = exercises[0].exercise
+      //   tempArray[indexes[1]].randomExercise = exercises[0].exercise
+      //   //
+      //   setExerciseArray(tempArray)
+      //   console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
+
+      // }, [deck])
+
+
       return (
-        <div className="deckDiv">
+        <div  className="deckDiv">
           
          
           {isGameOver && 
@@ -171,3 +211,4 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         </div>
     );    
 }
+
