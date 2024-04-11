@@ -90,9 +90,6 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
         setIsTimerComplete(false)
     }
 
-    function handleJokers() {
-
-    }
    
       useEffect(() =>  {
         if (currentIndex >= deck.length) {
@@ -120,49 +117,40 @@ export function CardDeck({exerciseArray, setExerciseArray}) {
             }
             return tempArray
         }
-        newDeck()
-    
-         //set the indexes of the jokers to an array
-         const indexes = deck.reduce((acc, card, index) => {
-          if (card.value === 'Joker') {
-           acc.push(index)
-          }
-          return acc
-         }, [])
-    
-         console.log(deck[indexes[0]], deck[indexes[1]])
-         console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
-         //array of exercises
-         let tempArray = generateExerciseArray()
-         //set the exercise of the joker to push ups
-        
-         tempArray[indexes[0]].randomExercise = exercises[0].exercise
-         tempArray[indexes[1]].randomExercise = exercises[0].exercise
-
+        let tempArray = generateExerciseArray()        
         setExerciseArray(tempArray)
+        newDeck()             
       }, [])
 
-      // useEffect(() => {
-      //   //set the indexes of the jokers to an array
-      //   const indexes = deck.reduce((acc, card, index) => {
-      //    if (card.value === 'Joker') {
-      //     acc.push(index)
-      //    }
-      //    return acc
-      //   }, [])
+      useEffect(() => {
+        //set the indexes of the jokers to an array
+        const indexes = deck.reduce((acc, card, index) => {
+         if (card.value === 'Joker') {
+          acc.push(index)
+         }
+         return acc
+        }, [])
    
-      //   console.log(deck[indexes[0]], deck[indexes[1]])
-      //   console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
+        let tempArray = [...exerciseArray]
+        //set the exercise of the joker to push ups
+        indexes.forEach(index => {
+          console.log(index)
+          // console.log(tempArray[index])
+          console.log(exercises[0].exercise, exercises[0].duration)
+          if (index !== undefined) {
+            tempArray[index] = {
+              exercise: exercises[0].exercise,
+              repType: exercises[0].duration
+            }
+          }
+        })
+     
+        setExerciseArray(tempArray)
+        
 
-      //   let tempArray = [...exerciseArray]
-      //   //set the exercise of the joker to push ups
-      //   tempArray[indexes[0]].randomExercise = exercises[0].exercise
-      //   tempArray[indexes[1]].randomExercise = exercises[0].exercise
-      //   //
-      //   setExerciseArray(tempArray)
-      //   console.log(exerciseArray[indexes[0]], exerciseArray[indexes[1]])
+      }, [deck])
 
-      // }, [deck])
+
 
 
       return (
