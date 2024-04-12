@@ -39,7 +39,7 @@ export function GameStats({deck , newGame}) {
       return (
         <>
             <div className='statsDiv'>
-                <h3>{stats.length} Exercises completed!</h3>
+                {stats.length > 0 && <h3>{stats.length} Exercises completed!</h3>}
                 {stats.map((stat, index) => (<p key={index} className='statsList'> {stat.exercise} {stat.isTimed ? `${stat.totalQty * 5} sec` : `${stat.totalQty} reps`}</p>))}
             </div>
             <button className='newGameBtn' onClick={newGame}><span className='startBtnTxt'>Start Game <br></br><br></br>{startMsg}</span><span className='cardBack'>🂠</span></button>
