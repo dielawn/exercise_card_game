@@ -1,7 +1,7 @@
 import './Cards.css';
-import { Exercise } from './Exercise';
 import { useState, useEffect } from "react";
 import exercises from './exercises.json';
+import { Exercise } from './Exercise';
 import { GameStats } from './GameStats';
 
 export function CardDeck() {

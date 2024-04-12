@@ -1,11 +1,3 @@
-.deckDiv {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 10px; /* Space between cards */
-    
-}
-  
   .cardBtn {
     position: relative;
     display: inline-block;
@@ -17,8 +9,12 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-size: 4.5em;
-    min-width: 30vw;
-    min-height: 90vh;
+    width: 35vw;
+    aspect-ratio: .714;
+}
+
+.jokerImg {
+  font-size: 3em;
 }
   
   .red-suit {
@@ -28,10 +24,7 @@
   .black-suit {
     color: black;
   }
-  
-  .jokerImg {
-    font-size: 6em;
-  }
+
 
   .cardBack {    
     font-size: 25rem;
@@ -44,7 +37,6 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    /* Offset the element by half of its width and height to truly center it */
     transform: translate(-50%, -50%);
     z-index: 1;
   }
@@ -52,7 +44,6 @@
   .newGameBtn {
     position: relative;
   }
-
 
   .topValue {
     position: absolute;
@@ -73,11 +64,11 @@
     .cardBtn {
        font-size: 3em;
         width: 80vw;
-        height: 60vh;
+        aspect-ratio: .714;
     }
 
     .jokerImg {
-        font-size: 5em;
+        font-size: 3.8em;
       }
 
    

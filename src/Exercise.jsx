@@ -13,8 +13,7 @@ useEffect(() => {
 }, [numValue])
 
 
-      return (
-       
+      return (       
         <>
         <h5 key={cardIndex}>{isTimed ? timeValue + ' sec' : numValue} </h5>
         <h5>{deck[cardIndex].exercise}</h5>

@@ -3,14 +3,14 @@ import './Timer.css'
 
 export function Timer({ duration, isTimerComplete, setIsTimerComplete }) {
     const [timer, setTimer] = useState(0);
-    const [countdown, setCountdown] = useState(3); // Starting countdown from 3
+    const [countdown, setCountdown] = useState(3); //3 sec countdown before timer starts
 
     useEffect(() => {
         setIsTimerComplete(false);
     }, []);
 
     useEffect(() => {
-        // Handle the countdown separately
+        //handle the countdown separately from timer
         if (countdown > 0) {
             const countdownId = setInterval(() => {
                 setCountdown(current => current - 1);
@@ -20,7 +20,7 @@ export function Timer({ duration, isTimerComplete, setIsTimerComplete }) {
     }, [countdown]);
 
     useEffect(() => {
-        // Once the countdown is done, start the timer
+        //once the countdown is done, start the timer
         if (countdown === 0 && !isTimerComplete) {
             const intervalId = setInterval(() => {
                 setTimer(currentTimer => {
